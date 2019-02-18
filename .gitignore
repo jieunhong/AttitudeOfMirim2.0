@@ -1,2 +1,8 @@
 .idea/
 AttitudeOfMirim2.0/.idea/
+*.jar
+*.log
+!spec/*.log
+*.gz
+!spec/*.gz
+*.war

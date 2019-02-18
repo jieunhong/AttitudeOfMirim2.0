@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/resources/css/AOM.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/AOM_LoginForm.css">
-    <link rel="shorcut icon" href="/resources/static/img/fbgraph.png" type="image/x-icon">
+    <link rel="shorcut icon" href="/resources/img/fbgraph.png" type="image/x-icon">
     <script>
         history.pushState(null, null, location.href);
         window.onpopstate = function () {

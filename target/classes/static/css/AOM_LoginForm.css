@@ -1,0 +1,123 @@
+#login-body{
+	height: 100%;
+	width: 100%;
+	background-image:url("/img/point_back.png");
+	background-size: cover;
+	z-index: -1;
+	-webkit-filter: blur(6px);
+	-moz-filter: blur(6px);
+	-o-filter: blur(6px);
+	position: fixed;
+}
+#login-content{
+		background-color: rgba(255,255,255,.70);
+    width: 450px;
+    height: 300px;
+    justify-content: center;
+    display: inline-block;
+}
+#login-padding{
+	padding-top: 100px;
+}
+#login-title{
+	padding: 20px;
+	display: block;
+	color: inherit;
+}
+
+.textbox{
+	width: 290px;
+	height: 35px;
+	border-style: solid;
+	border-color: #F0F0F0;
+	font-size: 10pt;
+	color: #63717f;
+	padding-left: 10px;
+	-webkit-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.textbox:hover{
+	font-size: 11.5pt;
+	-webkit-transition: all .55s ease;
+	-ms-transition: all .55s ease;
+	transition: all .55s ease;
+}
+
+#button-login{
+	font-family: 'Roboto';
+	width: 290px;
+	height: 35px;
+	background: #C6C6C6;
+	font-size: 12pt;
+	border: none;
+	-webkit-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#button-login:hover{
+	background: #B4B4B4;
+	color: white;
+	-webkit-transition: all .55s ease;
+	-ms-transition: all .55s ease;
+	transition: all .55s ease;
+}
+
+
+body {
+	margin: 0px;
+	padding: 0px;
+  text-align:center;
+  color:#555;
+  font-family:'Roboto';
+  font-weight:300;
+  font-size:32px;
+}
+
+a {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+a:first-of-type {    /* For increasing performance
+                       ID/Class should've been used.
+                       For a small demo
+                       it's okaish for now */
+  animation: showup 7s infinite;
+}
+
+a:last-of-type {
+  width:0px;
+  animation: reveal 7s infinite;
+}
+
+a:last-of-type span {
+  margin-left:-355px;
+  animation: slidein 7s infinite;
+}
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:120px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:120px;}
+}

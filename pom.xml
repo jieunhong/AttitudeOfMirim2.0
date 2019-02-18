@@ -7,7 +7,10 @@
     <groupId>kr.hs.emirim</groupId>
     <artifactId>AttitudeOfMirim2.0</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>war</packaging>
+    <!--  Spring Boot 1.4.2버전 이하부터 jsp를 지원하지 않는다.  -->
+    <!-- 따라서 war로 빌드파일을 설정한다. -->
+    <!-- 1.4.2이하일 경우, META-INF 폴더 안에 resources/WEB-INF/jsp 경로로 넣어준다 -->
 
 
     <parent>
@@ -31,6 +34,35 @@
             <version>2.1.1.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -40,7 +72,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.1.RELEASE</version>
                 <configuration>
-                    <mainClass>kr.hs.emirm.Application</mainClass>
+                    <mainClass>kr.hs.emirm.AttitudeOfMirimApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

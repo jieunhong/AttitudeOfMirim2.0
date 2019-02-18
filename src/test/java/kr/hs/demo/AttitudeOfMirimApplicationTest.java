@@ -1,4 +1,4 @@
-package kr.hs.emirim;
+package kr.hs.demo;
 
 public class AttitudeOfMirimApplicationTest {
 }
