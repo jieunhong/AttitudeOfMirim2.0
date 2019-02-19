@@ -2,13 +2,20 @@ package kr.hs.emirm.score.data;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Data
-@Getter @Setter
-@Builder
+@NoArgsConstructor
 public class PointVO {
 
     private int seq;
     private String ptId;
+    private String ptNum;
+    private int ptPlus;
+    private int ptMinus;
+    private String ptContent;
+    private String regAdmin;
+    private Date regDate;
 
     public int getSeq() {
         return seq;
@@ -66,19 +73,11 @@ public class PointVO {
         this.regAdmin = regAdmin;
     }
 
-    public String getRegDate() {
+    public Date getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(String regDate) {
+    public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
-
-    private String ptNum;
-    private int ptPlus;
-    private int ptMinus;
-    private String ptContent;
-    private String regAdmin;
-    private String regDate;
-
 }

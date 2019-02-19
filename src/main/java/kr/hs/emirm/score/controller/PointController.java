@@ -1,7 +1,7 @@
 package kr.hs.emirm.score.controller;
 
-import kr.hs.emirm.score.dao.main.PointDao;
 import kr.hs.emirm.score.data.PointVO;
+import kr.hs.emirm.score.service.PointService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,14 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/teacher")
 public class PointController {
 
-    private PointDao pointDao;
+    @Autowired
+    private PointService pointService;
 
     private PointVO pointVO;
 
     @RequestMapping("/main")
     public ModelAndView teacherMainPage(){
 
-        PointVO point = pointDao.selectPoint();
+        PointVO point = pointService.getPoint();
         System.out.println( point.getPtId() );
         ModelAndView model = new ModelAndView();
 
