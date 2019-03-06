@@ -6,10 +6,10 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/AOM.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/AOM_InsertScoreForm.css">
-<link rel="shorcut icon" href="/resources/img/fbgraph.png" type="image/x-icon">
-<%--  <%
+<link rel="stylesheet" type="text/css" href="css/AOM.css">
+<link rel="stylesheet" type="text/css" href="css/AOM_InsertScoreForm.css">
+<link rel="shorcut icon" href="../../../resources/static/img/fbgraph.png" type="image/x-icon">
+  <%
   try{
     String id = session.getAttribute("num").toString(); // request에서 id 파라미터를 가져온다
 
@@ -19,7 +19,7 @@
   }catch(Exception err){
     response.sendRedirect("https://point.emirim.kr");
   }
-  %>--%>
+  %>
 </head>
 <body>
 	<%@include file="top_teacher.jsp"%>

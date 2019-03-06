@@ -1,7 +1,7 @@
 package kr.hs.demo.score;
 
 
-import kr.hs.emirm.score.controller.PointController;
+import kr.hs.emirm.point.controller.PointController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
