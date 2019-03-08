@@ -67,7 +67,7 @@ response.setHeader("Cache-Control", "no-cache");
             <td><input type="submit" class="button" value="상/벌점 추가하기"
                        onclick="location.href='/teacher/insertPoint'"></td>
             <td><input type="submit" class="button" value="학년별 상/벌점 상세보기"
-                       onclick="location.href='/teacher/detailPoint'"></td>
+                       onclick="location.href='/teacher/searchUser'"></td>
             <td><input type="submit" class="button" value="반별 상/벌점 상세보기"
                        onclick="location.href='AOM_ClassScoreForm.jsp'"></td>
             <td><input type="submit" class="button" value="학생별 상/벌점 상세보기"

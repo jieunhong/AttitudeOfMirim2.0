@@ -14,12 +14,13 @@
           1
     </select>
 
-    <select id="selectStudentList" parameterType="kr.hs.emirm.point.data.PointVO" resultType="kr.hs.emirm.point.data.PointVO">
+    <select id="selectUserList" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
         select
           *
         from
-          point
-        where
+          user
+        limit
+          10
 
     </select>
 
