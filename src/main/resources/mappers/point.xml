@@ -5,7 +5,7 @@
 
 <mapper namespace="kr.hs.emirm.point.dao.main.PointDao">
 
-    <select id="selectPoint" resultType="kr.hs.emirm.point.data.PointVO">
+    <select id="getPoint" resultType="kr.hs.emirm.point.data.PointVO">
         select
           *
         from
@@ -14,21 +14,23 @@
           1
     </select>
 
-    <select id="selectUserList" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
+    <select id="getUserList" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
         select
-          *
+          id,
+          current_id,
+          name,
+          total
         from
           user
-        limit
-          10
+        where
+          1 = 1
+        <if test='name != null and name != "" '>
+          and name=#{name}
+        </if>
+        <if test='currentId != null and currentId != "" '>
+          and current_id regexp #{currentId}
+        </if>
 
     </select>
 
-    <select id="selectPointList" parameterType="kr.hs.emirm.point.data.PointVO" resultType="kr.hs.emirm.point.data.PointVO">
-        select
-          stu_id,
-          stu_num,
-          stu_name,
-          stu_total
-    </select>
 </mapper>

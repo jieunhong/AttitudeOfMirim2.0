@@ -4,8 +4,11 @@ import kr.hs.emirm.point.data.PointVO;
 import kr.hs.emirm.point.data.UserVO;
 import kr.hs.emirm.point.service.PointService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,8 @@ public class PointController {
     private PointService pointService;
 
     private PointVO pointVO;
+
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/main")
     public ModelAndView teacherMainPage(){
@@ -66,13 +71,21 @@ public class PointController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/searchUserList")
-    public UserVO searchUserList(@RequestBody UserVO reqUser, HttpServletRequest request){
+    @RequestMapping(method = RequestMethod.POST, value = "/searchUserList", consumes = "application/json", produces = "application/json")
+    public ModelMap searchUserList(@RequestBody UserVO reqUser){
 
-        System.out.println(reqUser.toString());
-        PointVO point = pointService.getPoint();
 
-        return reqUser;
+        List<UserVO> userList = pointService.getUserList(reqUser);
+
+        ModelMap map = new ModelMap();
+        map.put("userList",userList);
+
+        System.out.println(reqUser.getCurrentId());
+        System.out.println(reqUser);
+        System.out.println(userList);
+        logger.info("requst : ");
+
+        return map;
     }
 
 

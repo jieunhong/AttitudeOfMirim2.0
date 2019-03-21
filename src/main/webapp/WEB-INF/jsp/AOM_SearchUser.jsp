@@ -17,64 +17,100 @@
         var curpage = 1;
 
         $(document).ready(function () {
-           searchPointList();
+            searchPointList();
+
+            $("#searchBtn").click(function () {
+                searchPointList();
+            })
 
         });
-        var searchPointList = function(pageIndex){
-            if(pageIndex === undefined){
+        var searchPointList = function (pageIndex) {
+            if (pageIndex === undefined) {
                 pageIndex = curpage;
             }
 
             var payload = {};
             //payload.pageIndex;
 
-            if(!$("#class").val() == "0"){
+            if ($("#grade").val() == "0") {
                 payload.currentId = "^.{1}";
-            }else{
-                payload.currentId = "^"+$("#class").val();
+            } else {
+                payload.currentId = "^" + $("#grade").val();
             }
 
-            if($("#grade").val() == "0"){
+            if ($("#class").val() == "0") {
                 payload.currentId += ".{1}";
-            }else{
-                payload.currentId += $("#grade").val();
+            } else {
+                payload.currentId += $("#class").val();
             }
 
-            if($("#number").val() == "0"){
+            if ($("#number").val() == "0") {
                 payload.currentId += ".{2}$"
-            }else{
-                payload.currentId += $("#number").val()+"$";
+            } else {
+                payload.currentId += $("#number").val() + "$";
             }
 
-            if($("#name").val() !== "" && $("#name").val() !== undefined){
+            if ($("#name").val() !== "" && $("#name").val() !== undefined) {
                 payload.name = $("#name").val();
             }
 
+            alert(payload);
             console.log(payload);
-                $.ajax({
-                url:"searchUserList",
-                type:"POST",
-                async:false,
+            $.ajax({
+                type: "POST",
+                url: "searchUserList",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                mimeType: "application/json",
                 data: JSON.stringify(payload),
-                contentType:'application/json; charset=utf-8',
-                success:function(data){
+                success: function (data) {
                     console.log(data);
                     // TODO :: List부분 Jsp 분리해야함
+                    onSuccessList(data);
                     return false;
                 },
-                error:function(e){
+                error: function (e) {
                     console.log(e);
                 }
             });
+        }
+
+        onSuccessList = function (data) {
+            var pushContents = [];
+            var totalPoint = 0;
+            pushContents.push("<table>");
+            pushContents.push("<tr>");
+            pushContents.push("<th> 학번 </th>");
+            pushContents.push("<th> 이름 </th>");
+            pushContents.push("<th> 상/벌점</th>");
+            pushContents.push("</tr>");
+
+            $.each(data.userList, function (i, item) {
+                pushContents.push("<tr>");
+                pushContents.push("<td>" + item['currentId'] + "</td>");
+                pushContents.push("<td>" + item['name'] + "</td>");
+                pushContents.push("<td>" + (item['total']) + "</td>");
+                pushContents.push("</tr>");
+
+                totalPoint += item["total"];
+            });
+
+            pushContents.push("<tr>");
+            pushContents.push("<th> 총점 </th>");
+            pushContents.push("<td colspan='2'>" + totalPoint + "</td>");
+            pushContents.push("</tr>");
+            pushContents.push("</table>");
+            $("#searchUserList").html(pushContents);
         }
     </script>
 </head>
 <body>
 <%@include file="top_teacher.jsp" %>
 <div class="container">
+
     <div class="subtitle">반별 상/벌점 상세 검색</div>
 
-    <form method="post">
+    <form method="post" action="">
 
         <i class="fa fa-search" aria-hidden="true"></i>
 
@@ -87,14 +123,14 @@
         학년 &nbsp; &nbsp;
 
         <select name="class" id="class" required>
-        <option value="0">전체</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4"> 4</option>
-        <option value="5"> 5</option>
-        <option value="6">6</option>
-    </select>
+            <option value="0">전체</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4"> 4</option>
+            <option value="5"> 5</option>
+            <option value="6">6</option>
+        </select>
         반 &nbsp; &nbsp;
 
         <select name="class" id="number" required>
@@ -120,31 +156,21 @@
             <option value="19"> 19</option>
             <option value="20"> 20</option>
         </select>
-        번 &nbsp; &nbsp;
+        번
+
+        <br>
 
         이름
         <input type="text" id="name">
         &nbsp; &nbsp;
 
-        <input type="submit" class="button" value="검색">
+        <input type="button" id="searchBtn" class="button" value="검색">
+
+        <br>
 
     </form>
-    <table>
-        <tr>
-            <th> 학번</th>
-            <th> 이름</th>
-            <th> 상/벌점</th>
-        </tr>
+    <div id="searchUserList"></div>
 
-        <tr>
-
-        </tr>
-        <tr>
-            <th>총점</th>
-            <td colspan=2>
-            </td>
-        </tr>
-    </table>
 
 </div>
 
