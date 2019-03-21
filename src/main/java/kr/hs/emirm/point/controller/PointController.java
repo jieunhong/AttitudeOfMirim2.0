@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,13 +77,30 @@ public class PointController {
         ModelMap map = new ModelMap();
         map.put("userList",userList);
 
-        System.out.println(reqUser.getCurrentId());
-        System.out.println(reqUser);
-        System.out.println(userList);
-        logger.info("requst : ");
+        logger.info("request : "+reqUser);
+        logger.info("response : "+userList);
 
         return map;
     }
+
+
+    @RequestMapping("/searchUserDetail")
+    public ModelAndView searchUserDetailPage(@RequestBody String id){
+
+        List<PointVO> pointList = pointService.getPointList(id);
+
+        ModelAndView model = new ModelAndView();
+
+        model.addObject("pointList",pointList);
+        model.setViewName("AOM_SearchUserDetail");
+
+
+        logger.info("request : id="+id);
+        logger.info("response : "+pointList);
+
+        return model;
+    }
+
 
 
 

@@ -13,5 +13,6 @@ import java.util.List;
 public interface PointDao {
 
     PointVO getPoint();
+    List<PointVO> getPointList(String id);
     List<UserVO> getUserList(UserVO userVO);
 }

@@ -18,6 +18,10 @@ public class PointService {
         return pointDao.getPoint();
     }
 
+    public List<PointVO> getPointList(String id){
+        return pointDao.getPointList(id);
+    }
+
     public List<UserVO> getUserList(UserVO userVO){
         return pointDao.getUserList(userVO);
     }

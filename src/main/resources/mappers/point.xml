@@ -14,6 +14,22 @@
           1
     </select>
 
+    <select id="getPointList" parameterType="String" resultType="kr.hs.emirm.point.data.PointVO">
+        select
+          seq,
+          pt_id,
+          pt_num,
+          pt_plus,
+          pt_minus,
+          pt_content,
+          reg_admin,
+          date_format(reg_date,"%Y %c/%e") as reg_date
+        from
+          point
+        where
+          pt_id = #{id}
+    </select>
+
     <select id="getUserList" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
         select
           id,

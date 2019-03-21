@@ -5,6 +5,7 @@
 <head>
     <title>선생님 페이지</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/resources/js/jquery.bpopup.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,6 +14,14 @@
     <link rel="shorcut icon" href="/resources/img/fbgraph.png" type="image/x-icon">
 
 
+    <style>
+        #searchUserDetailPopup {
+            display: none;
+            background: white;
+            width: 70%;
+            height: 50%;
+        }
+    </style>
     <script type="text/javascript">
         var curpage = 1;
 
@@ -22,6 +31,9 @@
             $("#searchBtn").click(function () {
                 searchPointList();
             })
+
+
+
 
         });
         var searchPointList = function (pageIndex) {
@@ -88,7 +100,7 @@
             $.each(data.userList, function (i, item) {
                 pushContents.push("<tr>");
                 pushContents.push("<td>" + item['currentId'] + "</td>");
-                pushContents.push("<td>" + item['name'] + "</td>");
+                pushContents.push("<td>" + "<a href='javascript: searchStudentDetail(" + item['id'] + ")'>" + item['name'] + "</a> </td>");
                 pushContents.push("<td>" + (item['total']) + "</td>");
                 pushContents.push("</tr>");
 
@@ -102,6 +114,31 @@
             pushContents.push("</table>");
             $("#searchUserList").html(pushContents);
         }
+
+        var searchStudentDetail = function (userId) {
+
+            alert(userId);
+            $.ajax({
+                type: "POST",
+                url: "searchUserDetail",
+                dataType: "text",
+                contentType: 'application/json; charset=utf-8',
+                mimeType: "application/json",
+                data: JSON.stringify(userId),
+                success: function (data) {
+                    console.log(data);
+                    $("#searchUserDetailPopup").html(data);
+                    $('#searchUserDetailPopup').bPopup();
+                },
+                error: function (e) {
+                    alert("에러남");
+                    console.log(e);
+                }
+            });
+
+        }
+
+
     </script>
 </head>
 <body>
@@ -170,6 +207,7 @@
 
     </form>
     <div id="searchUserList"></div>
+    <div id="searchUserDetailPopup"></div>
 
 
 </div>

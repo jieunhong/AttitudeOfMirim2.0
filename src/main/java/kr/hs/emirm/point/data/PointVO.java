@@ -15,7 +15,7 @@ public class PointVO {
     private int ptMinus;
     private String ptContent;
     private String regAdmin;
-    private Date regDate;
+    private String regDate;
 
     public int getSeq() {
         return seq;
@@ -73,11 +73,11 @@ public class PointVO {
         this.regAdmin = regAdmin;
     }
 
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 }
