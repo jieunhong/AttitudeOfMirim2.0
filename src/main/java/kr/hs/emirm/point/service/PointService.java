@@ -26,4 +26,13 @@ public class PointService {
         return pointDao.getUserList(userVO);
     }
 
+    public void insertPoint(PointVO pointVO){
+        pointDao.insertPoint(pointVO);
+    };
+
+    public void deletePoint(String seq){
+        pointDao.deletePoint(seq);
+    };
+
+
 }

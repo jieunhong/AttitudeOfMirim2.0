@@ -95,10 +95,34 @@ public class PointController {
         model.setViewName("AOM_SearchUserDetail");
 
 
-        logger.info("request : id="+id);
+        logger.info("request : id = "+id);
         logger.info("response : "+pointList);
 
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/insertPoint", consumes = "application/json", produces = "application/json")
+    public void insertPoint(@RequestBody PointVO pointVO){
+
+        pointService.insertPoint(pointVO);
+
+
+        logger.info("request : "+pointVO);
+        logger.info("response : insert Point");
+
+    }
+
+    @RequestMapping("/deletePoint")
+    public void deletePoint(@RequestBody String seq){
+
+        pointService.deletePoint(seq);
+
+        ModelAndView model = new ModelAndView();
+
+        logger.info("request : seq = "+seq);
+        logger.info("response : delete Point");
+
     }
 
 

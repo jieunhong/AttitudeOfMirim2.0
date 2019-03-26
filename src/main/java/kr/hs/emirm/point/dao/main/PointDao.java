@@ -6,6 +6,7 @@ import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.awt.*;
 import java.util.List;
 
 @Repository
@@ -15,4 +16,7 @@ public interface PointDao {
     PointVO getPoint();
     List<PointVO> getPointList(String id);
     List<UserVO> getUserList(UserVO userVO);
+    void insertPoint(PointVO pointVO);
+    void deletePoint(String seq);
+
 }

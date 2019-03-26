@@ -49,4 +49,32 @@
 
     </select>
 
+    <insert id="insertPoint" parameterType="kr.hs.emirm.point.data.PointVO">
+        insert into point(
+          pt_id,
+          pt_num,
+          pt_plus,
+          pt_minus,
+          pt_content,
+          reg_admin,
+          reg_date
+        )
+        values (
+          #{ptId},
+          #{ptNum},
+          #{ptPlus},
+          #{ptMinus},
+          #{ptContent},
+          #{regAdmin},
+          now()
+        )
+    </insert>
+
+    <delete id="deletePoint" parameterType="kr.hs.emirm.point.data.PointVO">
+        delete from
+          point
+        where
+          seq = #{seq}
+    </delete>
+
 </mapper>

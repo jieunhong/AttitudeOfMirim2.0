@@ -14,7 +14,7 @@ table {
     text-align: left;
     line-height: 1.5;
     width: 60%;
-    border-top: 1px solid #909090;
+	display: block;
     font-family: 'Nanum Gothic';
     margin: 0 auto;
     margin-bottom: 30px;

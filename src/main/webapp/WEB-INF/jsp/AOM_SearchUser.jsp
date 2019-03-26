@@ -127,7 +127,7 @@
                 data: JSON.stringify(userId),
                 success: function (data) {
                     console.log(data);
-                    $("#searchUserDetailPopup").html(data);
+                    $("#searchUserDetailContent").html(data);
                     $('#searchUserDetailPopup').bPopup();
                 },
                 error: function (e) {
@@ -136,6 +136,9 @@
                 }
             });
 
+        }
+        var closePopup = function(){
+            $('#searchUserDetailPopup').bPopup().close();
         }
 
 
@@ -207,7 +210,14 @@
 
     </form>
     <div id="searchUserList"></div>
-    <div id="searchUserDetailPopup"></div>
+    <div id="searchUserDetailPopup">
+        <a onclick="closePopup()">
+            <img class="close-button" src="/resources/img/icon_close.png">
+        </a>
+        <center>
+            <div id="searchUserDetailContent"></div>
+        </center>
+    </div>
 
 
 </div>
