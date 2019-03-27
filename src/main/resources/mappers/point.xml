@@ -49,6 +49,15 @@
 
     </select>
 
+    <select id="getUserId" parameterType="String" resultType="String">
+        select
+          id
+        from
+          user
+        where
+          current_id = #{currentId}
+    </select>
+
     <insert id="insertPoint" parameterType="kr.hs.emirm.point.data.PointVO">
         insert into point(
           pt_id,

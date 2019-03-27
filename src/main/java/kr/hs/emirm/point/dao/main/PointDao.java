@@ -16,6 +16,7 @@ public interface PointDao {
     PointVO getPoint();
     List<PointVO> getPointList(String id);
     List<UserVO> getUserList(UserVO userVO);
+    String getUserId(String currentId);
     void insertPoint(PointVO pointVO);
     void deletePoint(String seq);
 

@@ -1,6 +1,7 @@
 package kr.hs.emirm.point.controller;
 
 import kr.hs.emirm.point.data.PointVO;
+import kr.hs.emirm.point.data.ResultCode;
 import kr.hs.emirm.point.data.UserVO;
 import kr.hs.emirm.point.service.PointService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -38,18 +36,6 @@ public class PointController {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("AOM_TeacherMain");
-
-        return model;
-    }
-
-    @RequestMapping("/insertPoint")
-    public ModelAndView insertPointPage(){
-
-        PointVO point = pointService.getPoint();
-        System.out.println( point.getPtId() );
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("AOM_InsertScoreForm");
 
         return model;
     }
@@ -101,15 +87,56 @@ public class PointController {
         return model;
     }
 
+
+    @RequestMapping("/manageUser")
+    public ModelAndView insertPointPage(){
+
+        PointVO point = pointService.getPoint();
+        System.out.println( point.getPtId() );
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("AOM_InsertScoreForm");
+
+        return model;
+    }
+
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/insertPoint", consumes = "application/json", produces = "application/json")
-    public void insertPoint(@RequestBody PointVO pointVO){
-
-        pointService.insertPoint(pointVO);
+    public ResultCode insertPoint(@RequestBody PointVO pointVO){
 
 
-        logger.info("request : "+pointVO);
-        logger.info("response : insert Point");
+
+        try {
+
+            logger.info("request : "+pointVO);
+            logger.info("response : insert Point");
+
+            pointVO.setPtId(pointService.getUserId(pointVO.getPtNum()));
+            if(StringUtils.isEmpty(pointVO.getPtId())){
+                return ResultCode.builder()
+                        .resultCode(1001)
+                        .resultMessage("등록하시려는 학생의 아이디가 존재하지 않습니다. ")
+                        .build();
+            }else {
+                try {
+                    pointService.insertPoint(pointVO);
+                } catch (Exception e) {
+                    return ResultCode.builder()
+                            .resultCode(1001)
+                            .resultMessage("[ERROR]상/벌점 추가를 실패했습니다. :" + e.getMessage())
+                            .build();
+                }
+            }
+        }catch (Exception e){
+            return ResultCode.builder()
+                    .resultCode(1002)
+                    .resultMessage("[ERROR]상/벌점 추가 중 에러가 발생했습니다. :"+e.getMessage())
+                    .build();
+        }
+
+        return ResultCode.builder()
+                .resultCode(1)
+                .build();
 
     }
 
