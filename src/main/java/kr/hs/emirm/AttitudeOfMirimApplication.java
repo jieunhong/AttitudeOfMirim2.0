@@ -21,16 +21,6 @@ public class AttitudeOfMirimApplication {
 */
     }
 
-    @RequestMapping("/")
-    public ModelAndView teacherMainPage(){
-
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("AOM_LoginForm");
-
-        return model;
-    }
-
 /*
     @Bean
     public ServletWebServerFactory serverFactory(){
