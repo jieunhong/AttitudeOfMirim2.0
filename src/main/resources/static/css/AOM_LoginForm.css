@@ -83,19 +83,19 @@ a {
   white-space:nowrap;
 }
 
-a:first-of-type {    /* For increasing performance
+a:first-of-type .title-anim {    /* For increasing performance
                        ID/Class should've been used.
                        For a small demo
                        it's okaish for now */
   animation: showup 7s infinite;
 }
 
-a:last-of-type {
+a:last-of-type .title-anim {
   width:0px;
   animation: reveal 7s infinite;
 }
 
-a:last-of-type span {
+a:last-of-type span .title-anim {
   margin-left:-355px;
   animation: slidein 7s infinite;
 }

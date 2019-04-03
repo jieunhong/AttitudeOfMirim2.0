@@ -91,3 +91,9 @@ a{
 	float:right;
 	margin: 20px;
 }
+.popup{
+	display: none;
+	background: white;
+	width: 70%;
+	height: 50%;
+}

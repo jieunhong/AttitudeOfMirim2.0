@@ -1,5 +1,6 @@
 package kr.hs.emirm.login.controller;
 
+import kr.hs.emirm.login.data.AdminVO;
 import kr.hs.emirm.login.service.LoginService;
 import kr.hs.emirm.point.data.PointVO;
 import kr.hs.emirm.point.data.ResultCode;
@@ -41,12 +42,30 @@ public class LoginController {
         return model;
     }
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/login", consumes = "application/json", produces = "application/json")
     public ModelAndView loginUser(@RequestBody UserVO userVO){
 
         ModelAndView model = new ModelAndView();
 
-        model.setViewName("AOM_TeacherMain");
+        //1. Admin Check
+        AdminVO checkAdmin = loginService.checkAdmin(userVO);
+        if(checkAdmin != null){
+            model.addObject("name",checkAdmin.getName());
+            model.addObject("id",checkAdmin.getId());
+            model.setViewName("AOM_TeacherMain");
+            return model;
+        }
+        UserVO checkUser = loginService.checkUser(userVO);
+        if(loginService.checkUser(userVO) != null){
+            model.addObject("name",checkUser.getName());
+            model.addObject("id",checkUser.getId());
+            model.setViewName("AOM_StudentMain");
+            return model;
+        }
+            model.addObject("resultCode",ResultCode.builder().resultCode(-1).resultMessage("사용자가 존재하지 않습니다. 다시 한 번 확인해주세요."));
+            model.setViewName("AOM_loginForm");
+
 
         return model;
     }

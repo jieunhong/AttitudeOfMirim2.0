@@ -14,14 +14,6 @@
     <link rel="shorcut icon" href="/resources/img/fbgraph.png" type="image/x-icon">
 
 
-    <style>
-        #searchUserDetailPopup {
-            display: none;
-            background: white;
-            width: 70%;
-            height: 50%;
-        }
-    </style>
     <script type="text/javascript">
         var curpage = 1;
 
@@ -210,7 +202,7 @@
 
     </form>
     <div id="searchUserList"></div>
-    <div id="searchUserDetailPopup">
+    <div id="searchUserDetailPopup" class="popup">
         <a onclick="closePopup()">
             <img class="close-button" src="/resources/img/icon_close.png">
         </a>

@@ -6,4 +6,26 @@
 <mapper namespace="kr.hs.emirm.login.dao.main.LoginDao">
 
 
+    <select id="checkAdmin" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.login.data.AdminVO">
+        select
+          id,
+          name
+        from
+          admin
+        where
+          1=1
+          and id = #{currentId}
+          and pwd =  #{pwd}
+    </select>
+    <select id="checkUser" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
+        select
+          id,
+          name
+        from
+          user
+        where
+          1=1
+          and current_id = #{currentId}
+          and pwd =  #{pwd}
+    </select>
 </mapper>
