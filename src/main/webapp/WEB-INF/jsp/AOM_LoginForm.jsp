@@ -35,6 +35,12 @@
                 loginUser();
             })
 
+            $("ul li").click(function () {
+                $("ul li").removeClass("active").css("color", "#333");
+                //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+                $(this).addClass("active").css("color", "darkred");
+            });
+
         });
 
         var loginUser  = function () {
@@ -87,29 +93,38 @@
 <div class="top"></div>
 <!--<div id="login-body"></div>-->
 <div class="container">
-    <div id="login-padding">
-        <div  id="login-content">
-            <div id="login-title" >
-                <a class="title-anim">Attitude</a>
-                <a class="title-anim">
-                    <span class="title-anim">of Mirim</span>
-                </a>
-            </div>
-            <form method="post" >
-                <input type="text" class="textbox" name="currentId" maxlength="50" placeholder="학번 입력" required/><br />
-                <input type="password" class="textbox" name="pwd" maxlength="16" placeholder="비밀번호 입력" required /><br />
-                <input type="button" id="loginBtn" value="SIGN IN">
-            </form>
-            <div id="loginErrorPopup" class="popup">
-                <a onclick="closePopup()">
-                    <img class="close-button" src="/resources/img/icon_close.png">
-                </a>
-                <center>
-                    <div id="loginErrorContent"></div>
-                </center>
-            </div>
-        </div>
+
+    <div class="login-title">
+        <a class="title-anim">Attitude</a>
+        <a class="title-anim">
+            <span class="title-anim">of Mirim</span>
+        </a>
     </div>
+    <div class="login-content">
+        <ul id="loginType">
+            <li class="active" id="loginUser"> 학생 로그인</li>
+            <li id="loginAdmin"> 선생님 로그인</li>
+        </ul>
+        <form method="post" style="margin-top:25px;">
+            <input type="text" class="textbox" name="currentId" maxlength="50" placeholder="학번 입력"
+                   required/><br/>
+            <input type="password" class="textbox" name="pwd" maxlength="16" placeholder="비밀번호 입력"
+                   required/><br/>
+
+            <input type="button" class="button-login" id="loginBtn" value="SIGN IN">
+        </form>
+    </div>
+</div>
+
+<!--popup-->
+<div id="loginErrorPopup" class="popup">
+    <a onclick="closePopup()">
+        <img class="close-button" src="/resources/img/icon_close.png">
+    </a>
+    <center>
+        <div id="loginErrorContent"></div>
+    </center>
+</div>
 </div>
 <%@include file="bottom_copyright.jsp"%>
 </body>

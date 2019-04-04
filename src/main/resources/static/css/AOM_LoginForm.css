@@ -1,4 +1,4 @@
-#login-body{
+.login-body{
 	height: 100%;
 	width: 100%;
 	background-image:url("/img/point_back.png");
@@ -9,17 +9,17 @@
 	-o-filter: blur(6px);
 	position: fixed;
 }
-#login-content{
-		background-color: rgba(255,255,255,.70);
-    width: 450px;
-    height: 300px;
+.login-content{
+	background-color: rgba(255,255,255,.70);
+    width: 400px;
+    height: 250px;
     justify-content: center;
     display: inline-block;
 }
-#login-padding{
+.login-padding{
 	padding-top: 100px;
 }
-#login-title{
+.login-title{
 	padding: 20px;
 	display: block;
 	color: inherit;
@@ -46,7 +46,7 @@
 	transition: all .55s ease;
 }
 
-#button-login{
+.button-login{
 	font-family: 'Roboto';
 	width: 290px;
 	height: 35px;
@@ -58,7 +58,7 @@
 	border-radius: 5px;
 }
 
-#button-login:hover{
+.button-login:hover{
 	background: #B4B4B4;
 	color: white;
 	-webkit-transition: all .55s ease;
@@ -83,19 +83,19 @@ a {
   white-space:nowrap;
 }
 
-a:first-of-type .title-anim {    /* For increasing performance
+a:first-of-type.title-anim {    /* For increasing performance
                        ID/Class should've been used.
                        For a small demo
                        it's okaish for now */
   animation: showup 7s infinite;
 }
 
-a:last-of-type .title-anim {
+a:last-of-type.title-anim {
   width:0px;
   animation: reveal 7s infinite;
 }
 
-a:last-of-type span .title-anim {
+a:last-of-type span.title-anim {
   margin-left:-355px;
   animation: slidein 7s infinite;
 }
@@ -120,4 +120,32 @@ a:last-of-type span .title-anim {
     30% {width:120px;}
     80% {opacity:1;}
     100% {opacity:0;width:120px;}
+}
+
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: 45px;
+	width: 100%;
+	font-size:12px;
+}
+ul li {
+	text-align:center;
+	cursor: pointer;
+	width: 198.5px;
+	height: 45px;
+	line-height: 45px;
+	border-bottom: 1px solid #eee;
+	font-weight: bold;
+	background: #B4B4B4;
+	overflow: hidden;
+	margin: auto;
+	display: inline-block;
+	position: relative;
+}
+ul  li.active {
+	background: #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
 }
