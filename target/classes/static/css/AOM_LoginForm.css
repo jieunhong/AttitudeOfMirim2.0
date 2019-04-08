@@ -149,3 +149,9 @@ ul  li.active {
 	background: #FFFFFF;
 	border-bottom: 1px solid #FFFFFF;
 }
+
+div.login-user{
+	display: block;
+	background: white;
+	padding: 25px;
+}

@@ -14,7 +14,7 @@
           admin
         where
           1=1
-          and id = #{currentId}
+          and id = #{id}
           and pwd =  #{pwd}
     </select>
     <select id="checkUser" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
@@ -26,6 +26,7 @@
         where
           1=1
           and current_id = #{currentId}
+          and id = #{id}
           and pwd =  #{pwd}
     </select>
 </mapper>

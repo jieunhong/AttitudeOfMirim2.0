@@ -48,24 +48,36 @@ public class LoginController {
 
         ModelAndView model = new ModelAndView();
 
-        //1. Admin Check
-        AdminVO checkAdmin = loginService.checkAdmin(userVO);
-        if(checkAdmin != null){
-            model.addObject("name",checkAdmin.getName());
-            model.addObject("id",checkAdmin.getId());
-            model.setViewName("AOM_TeacherMain");
-            return model;
-        }
-        UserVO checkUser = loginService.checkUser(userVO);
-        if(loginService.checkUser(userVO) != null){
-            model.addObject("name",checkUser.getName());
-            model.addObject("id",checkUser.getId());
-            model.setViewName("AOM_StudentMain");
-            return model;
-        }
-            model.addObject("resultCode",ResultCode.builder().resultCode(-1).resultMessage("사용자가 존재하지 않습니다. 다시 한 번 확인해주세요."));
-            model.setViewName("AOM_loginForm");
 
+        logger.info("request : "+userVO);
+        logger.info("response : login user");
+
+        try {
+            //1. Admin Check
+            AdminVO checkAdmin = loginService.checkAdmin(userVO);
+            if (checkAdmin != null) {
+                logger.info("AdminLoginSuccess");
+                model.addObject("name", checkAdmin.getName());
+                model.addObject("id", checkAdmin.getId());
+                model.setViewName("AOM_TeacherMain");
+                return model;
+            }
+            //2.UserCheck
+            UserVO checkUser = loginService.checkUser(userVO);
+            if (checkUser != null) {
+                logger.info("UserLoginSuccess");
+                model.addObject("name", checkUser.getName());
+                model.addObject("id", checkUser.getId());
+                model.setViewName("AOM_StudentMain");
+                return model;
+            }
+
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+
+        model.addObject("resultCode", ResultCode.builder().resultCode(-1).resultMessage("사용자가 존재하지 않습니다. 다시 한 번 확인해주세요."));
+        model.setViewName("AOM_LoginForm");
 
         return model;
     }

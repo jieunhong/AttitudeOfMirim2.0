@@ -31,34 +31,53 @@
             console.log("© Copyright NEWMEDIA CONTENTS MIRIM MEISTER SCHOOL , Jieun Hong 2018. ALL RIGHTS RESERVED");
             console.log("페이지에 관한 문의사항은 hyy0786@e-mirim.hs.kr으로 연락 부탁드립니다.");
 
-            $("#loginBtn").click(function () {
-                loginUser();
-            })
+            $("#loginUserBtn").click(function () {
+                loginUser("user");
+            });
+            $("#loginAdminBtn").click(function () {
+                loginUser("admin");
+            });
 
             $("ul li").click(function () {
                 $("ul li").removeClass("active").css("color", "#333");
-                //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
                 $(this).addClass("active").css("color", "darkred");
+                if(this.id == "loginUser"){
+                    $("#currentId").css("display","inline");
+                }else{
+                    $("#currentId").css("display","none");
+                }
             });
-
         });
 
-        var loginUser  = function () {
+        var loginUser = function (loginType) {
 
-            //이거 좀 이상해서...고쳐야함..
-            /*if( $.trim($("#currentId").val()) == ""){
-                $('#loginErrorContent').html("아이디를 입력해주세요");
-                $('#loginErrorPopup').bPopup();
-                return false
-            }else if( $.trim($("#pwd").val()) == "") {
-                $('#loginErrorContent').html("비밀번호를 입력해주세요");
-                $('#loginErrorPopup').bPopup();
-                return false
-            }*/
+
 
             var payload = {};
 
-            payload.currentId = $("#currentId").val();
+
+            if(loginType == "user") {
+                if ($("#currentId").val() == "") {
+                    $('#loginErrorContent').html("학번을 입력해주세요");
+                    $('#loginErrorPopup').bPopup();
+                    return false
+                }
+
+                payload.currentId = $("#currentId").val();
+            }
+
+            if( $("#id").val() == "") {
+                $('#loginErrorContent').html("비밀번호를 입력해주세요");
+                $('#loginErrorPopup').bPopup();
+                return false
+            }else if($("#pwd").val() == ""){
+                $('#loginErrorContent').html("비밀번호를 입력해주세요");
+                $('#loginErrorPopup').bPopup();
+                return false
+
+            }
+
+            payload.id = $("#id").val();
             payload.pwd = $("#pwd").val();
 
             alert(payload);
@@ -102,17 +121,21 @@
     </div>
     <div class="login-content">
         <ul id="loginType">
-            <li class="active" id="loginUser"> 학생 로그인</li>
-            <li id="loginAdmin"> 선생님 로그인</li>
+            <li class="active" id="loginUser" value="user"> 학생 로그인</li>
+            <li id="loginAdmin" value="admin"> 선생님 로그인</li>
         </ul>
-        <form method="post" style="margin-top:25px;">
-            <input type="text" class="textbox" name="currentId" maxlength="50" placeholder="학번 입력"
-                   required/><br/>
-            <input type="password" class="textbox" name="pwd" maxlength="16" placeholder="비밀번호 입력"
-                   required/><br/>
+        <div id="loginUserForm"  class="login-user">
+            <form method="post" >
+                <input type="text" class="textbox" id="currentId" maxlength="50" placeholder="학번 입력"
+                       required/>
+                <input type="text" class="textbox" id="id" maxlength="50" placeholder="아이디 입력"
+                       required/>
+                <input type="password" class="textbox" id="pwd" maxlength="16" placeholder="비밀번호 입력"
+                       required/>
+                <input type="button" class="button-login" id="loginUserBtn" value="SIGN IN">
+            </form>
+        </div>
 
-            <input type="button" class="button-login" id="loginBtn" value="SIGN IN">
-        </form>
     </div>
 </div>
 
