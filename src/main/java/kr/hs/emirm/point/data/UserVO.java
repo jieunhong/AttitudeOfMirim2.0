@@ -1,5 +1,6 @@
 package kr.hs.emirm.point.data;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

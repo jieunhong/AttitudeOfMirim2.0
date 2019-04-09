@@ -27,4 +27,9 @@ public class LoginService {
     }
 
 
+    public UserVO getUser(String id){
+        return loginDao.getUserById(id);
+    }
+
+
 }

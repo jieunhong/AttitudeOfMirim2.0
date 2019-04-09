@@ -20,7 +20,8 @@
     <select id="checkUser" parameterType="kr.hs.emirm.point.data.UserVO" resultType="kr.hs.emirm.point.data.UserVO">
         select
           id,
-          name
+          name,
+          total
         from
           user
         where
@@ -29,4 +30,31 @@
           and id = #{id}
           and pwd =  #{pwd}
     </select>
+
+
+    <update id="changePwd" parameterType="kr.hs.emirm.point.data.UserVO">
+        update
+          user
+        set
+          pwd =  #{pwd}
+        where
+          1=1
+          and current_id = #{currentId}
+          and id = #{id}
+    </update>
+
+    <select id="getUserById"  parameterType="String" resultType="kr.hs.emirm.point.data.UserVO">
+        select
+          id,
+          birth,
+          name,
+          total,
+          current_id
+        from
+          user
+        where
+          1=1
+          and id = #{id}
+    </select>
+
 </mapper>

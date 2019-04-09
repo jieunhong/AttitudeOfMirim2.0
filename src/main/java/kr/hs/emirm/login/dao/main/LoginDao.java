@@ -14,5 +14,6 @@ public interface LoginDao {
 
     UserVO checkUser(UserVO userVO);
     AdminVO checkAdmin(UserVO userVO);
+    UserVO getUserById(String id);
 
 }

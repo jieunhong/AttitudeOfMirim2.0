@@ -1,7 +1,7 @@
 package kr.hs.emirm.point.controller;
 
 import kr.hs.emirm.point.data.PointVO;
-import kr.hs.emirm.point.data.ResultCode;
+import kr.hs.emirm.common.data.ResultCode;
 import kr.hs.emirm.point.data.UserVO;
 import kr.hs.emirm.point.service.PointService;
 import lombok.extern.slf4j.Slf4j;

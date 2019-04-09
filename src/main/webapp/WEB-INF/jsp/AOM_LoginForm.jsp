@@ -92,7 +92,9 @@
                 data: JSON.stringify(payload),
                 success: function (data) {
                     console.log(data);
-                    return false;
+                    if(data.resultCode == 1){
+                        window.location = data.resultUrl;
+                    }
                 },
                 error: function (e) {
                     console.log(e);
