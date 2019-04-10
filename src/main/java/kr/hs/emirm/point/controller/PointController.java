@@ -1,5 +1,6 @@
 package kr.hs.emirm.point.controller;
 
+import kr.hs.emirm.common.data.CommonData;
 import kr.hs.emirm.point.data.PointVO;
 import kr.hs.emirm.common.data.ResultCode;
 import kr.hs.emirm.point.data.UserVO;
@@ -14,6 +15,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -102,7 +105,7 @@ public class PointController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/insertPoint", consumes = "application/json", produces = "application/json")
-    public ResultCode insertPoint(@RequestBody PointVO pointVO){
+    public ResultCode insertPoint(@RequestBody PointVO pointVO, HttpServletRequest request){
 
 
 
@@ -111,7 +114,11 @@ public class PointController {
             logger.info("request : "+pointVO);
             logger.info("response : insert Point");
 
+            HttpSession session = request.getSession(true);
+
             pointVO.setPtId(pointService.getUserId(pointVO.getPtNum()));
+            pointVO.setRegAdmin(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString()+
+                    "("+session.getAttribute(CommonData.SESS_LOGIN_ID.getKey()).toString()+")");
             if(StringUtils.isEmpty(pointVO.getPtId())){
                 return ResultCode.builder()
                         .resultCode(1001)

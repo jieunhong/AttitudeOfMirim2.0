@@ -26,30 +26,30 @@
         };
 
 
+        var loginType = "user";
+
         $(document).ready(function () {
 
             console.log("© Copyright NEWMEDIA CONTENTS MIRIM MEISTER SCHOOL , Jieun Hong 2018. ALL RIGHTS RESERVED");
             console.log("페이지에 관한 문의사항은 hyy0786@e-mirim.hs.kr으로 연락 부탁드립니다.");
 
-            $("#loginUserBtn").click(function () {
-                loginUser("user");
+            $("#loginBtn").click(function () {
+                loginUser();
             });
-            $("#loginAdminBtn").click(function () {
-                loginUser("admin");
-            });
-
             $("ul li").click(function () {
                 $("ul li").removeClass("active").css("color", "#333");
                 $(this).addClass("active").css("color", "darkred");
                 if(this.id == "loginUser"){
                     $("#currentId").css("display","inline");
+                    loginType = "user";
                 }else{
                     $("#currentId").css("display","none");
+                    loginType = "admin";
                 }
             });
         });
 
-        var loginUser = function (loginType) {
+        var loginUser = function () {
 
 
 
@@ -134,7 +134,7 @@
                        required/>
                 <input type="password" class="textbox" id="pwd" maxlength="16" placeholder="비밀번호 입력"
                        required/>
-                <input type="button" class="button-login" id="loginUserBtn" value="SIGN IN">
+                <input type="button" class="button-login" id="loginBtn" value="SIGN IN">
             </form>
         </div>
 

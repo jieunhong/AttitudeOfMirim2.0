@@ -46,9 +46,8 @@
             class="light">현재 상벌점 총 합계는</span>
             <c:out value="${user.total}" />점<span class="light">입니다.</span>
     </div>
-    <form method="post" action="AOM_StudentDetail.jsp">
-        <input type="submit" class="button" value="see">
-    </form>
+    <input type="submit" class="button" value="학년별 상/벌점 상세보기"
+               onclick="location.href='/student/studentDetail'">
 </div>
 <%@include file="bottom_copyright.jsp" %>
 </body>
