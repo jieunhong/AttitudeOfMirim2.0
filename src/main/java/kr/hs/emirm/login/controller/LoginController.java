@@ -32,10 +32,14 @@ public class LoginController {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
-    public ModelAndView loginUserPage(){
+    public ModelAndView loginUserPage(HttpServletRequest request){
 
         ModelAndView model = new ModelAndView();
 
+        if(request.getSession().getAttribute(CommonData.SESS_LOGIN_ID.getKey()) != null){
+            logger.info("invalidate Session : "+request.getSession().getAttribute(CommonData.SESS_LOGIN_ID.getKey()));
+            request.getSession().invalidate();
+        }
         model.setViewName("AOM_LoginForm");
 
         return model;
@@ -59,6 +63,7 @@ public class LoginController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute(CommonData.SESS_LOGIN_ID.getKey(),checkAdmin.getId());
                 session.setAttribute(CommonData.SESS_LOGIN_NAME.getKey(),checkAdmin.getName());
+                session.setAttribute(CommonData.SESS_LOGIN_TYPE.getKey(),"teacher");
 
                 logger.info(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString()+"("+session.getAttribute(CommonData.SESS_LOGIN_ID.getKey()).toString()+") Login Success !");
 
@@ -75,6 +80,8 @@ public class LoginController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute(CommonData.SESS_LOGIN_ID.getKey(),checkUser.getId());
                 session.setAttribute(CommonData.SESS_LOGIN_NAME.getKey(),checkUser.getName());
+                session.setAttribute(CommonData.SESS_LOGIN_TYPE.getKey(),"student");
+
 
                 logger.info(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString()+"("+session.getAttribute(CommonData.SESS_LOGIN_ID.getKey()).toString()+") Login Success !");
 

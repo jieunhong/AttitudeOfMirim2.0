@@ -4,6 +4,7 @@ public enum CommonData{
 
     SESS_LOGIN_ID ("id","로그인 사용자 ID"),
     SESS_LOGIN_NAME ("name","로그인 사용자 이름"),
+    SESS_LOGIN_TYPE ("loginType","로그인 사용자 타입"),
     ;
 
     private String key;

@@ -4,7 +4,7 @@
 	function logout(){
 		var result = confirm("로그아웃 하시겠습니까?");
 		if (result == true){
-			location.href="https://point.emirim.kr";
+			location.href="/";
 		}
 	}
   function changePwd(){

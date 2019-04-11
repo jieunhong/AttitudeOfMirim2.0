@@ -4,7 +4,7 @@
 function logout(){
 	var result = confirm("로그아웃 하시겠습니까?");
 	if (result == true){
-		location.href="https://point.emirim.kr";
+		location.href="/";
 	}
 }
 function changePwd(){
@@ -14,7 +14,7 @@ console.log("© Copyright NEWMEDIA CONTENTS MIRIM MEISTER SCHOOL , Jieun Hong 20
 console.log("페이지에 관한 문의사항은 hyy0786@e-mirim.hs.kr으로 연락 부탁드립니다.");
 </script>
 <div class="top">
-	<a href="AOM_StudentMain.jsp">
+	<a href="/student/main">
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 		<div class="title">Attitude of Mirim - student</div>
 	</a>
