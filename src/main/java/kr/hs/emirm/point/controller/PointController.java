@@ -117,8 +117,7 @@ public class PointController {
             HttpSession session = request.getSession(true);
 
             pointVO.setPtId(pointService.getUserId(pointVO.getPtNum()));
-            pointVO.setRegAdmin(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString()+
-                    "("+session.getAttribute(CommonData.SESS_LOGIN_ID.getKey()).toString()+")");
+            pointVO.setRegAdmin(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString());
             if(StringUtils.isEmpty(pointVO.getPtId())){
                 return ResultCode.builder()
                         .resultCode(1001)

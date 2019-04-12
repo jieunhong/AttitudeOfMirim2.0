@@ -12,7 +12,7 @@ public class UserVO {
 
     private String id;
     private String currentId;
-    private int birth;
+    private String birth;
     private String name;
     private int total;
     private String pwd;

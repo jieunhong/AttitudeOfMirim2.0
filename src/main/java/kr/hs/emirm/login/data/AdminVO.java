@@ -10,7 +10,7 @@ public class AdminVO {
 
     private String id;
     private String name;
-    private int birth;
+    private String birth;
     private String pwd;
 
 }
