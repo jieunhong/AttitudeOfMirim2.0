@@ -6,7 +6,6 @@
 <head>
 </head>
 <body>
-<table>
     <table class="search">
         <tr>
             <th>날짜</th>
@@ -27,6 +26,5 @@
         </tr>
     </c:forEach>
     </table>
-</table>
 </body>
 </html>

@@ -201,13 +201,13 @@
         <br>
 
     </form>
-    <div id="searchUserList"></div>
+    <div id="searchUserList" style="display: inline-block;"></div>
     <div id="searchUserDetailPopup" class="popup">
-        <a onclick="closePopup()">
-            <img class="close-button" src="/resources/img/icon_close.png">
+        <a onclick="closePopup()" style="height: 60px; display: block;">
+            <img class="close-button" src="/resources/img/icon_close.png" >
         </a>
         <center>
-            <div id="searchUserDetailContent"></div>
+            <div id="searchUserDetailContent" class="search-detail"></div>
         </center>
     </div>
 
