@@ -31,6 +31,9 @@
         $("#insertBtn").click(function () {
             insertPoint();
         })
+        $("#searchUserBtn").click(function () {
+            searchUser();
+        })
 
 
     });
@@ -51,8 +54,6 @@
         payload.ptContent = $("#content").val();
         payload.ptNum = id;
 
-        //로그인 기능이 구현이 안되어있으므로 일단은 강제로 넣기
-        payload.regAdmin="관리자테스트";
         console.log(payload);
         $.ajax({
             type: "POST",
@@ -67,6 +68,49 @@
                     alert("추가 완료");
                 }else{
                     alert("["+data.resultCode+"]"+data.resultMessage);
+                }
+            },
+            error: function (e) {
+                alert("에러남");
+                console.log(e);
+            }
+        });
+
+    }
+    var searchUser = function () {
+
+        var currentId = $("#grade").val() + $("#class").val() + $("#num").val();
+
+
+        console.log(currentId);
+        alert(currentId);
+
+        alert(typeof(currentId));
+        $.ajax({
+            type: "POST",
+            url: "getUserByCurrentId",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            mimeType: "application/json",
+            data: currentId,
+            success: function (data) {
+                console.log(data);
+                if(data != null) {
+
+                    var pushContents = [];
+                    var totalPoint = 0;
+
+                    console.log(data);
+                        pushContents.push("<tr>");
+                        pushContents.push("<td>" + data.currentId + "</td>");
+                        pushContents.push("<td>" + data.name + "</td>");
+                        pushContents.push("<td>" + data.total + "</td>");
+                        pushContents.push("<td>" + "<a href='javascript: deleteUser(" + data.id + ")'> 삭제 </a> </td>");
+                        pushContents.push("</tr>");
+                    $("#selectUserList").append(pushContents);
+
+                }else{
+                    alert(id+": 요청하신 학생의 정보가 없습니다.");
                 }
             },
             error: function (e) {
@@ -135,6 +179,24 @@
                             <option value="20">20</option>
                         </select>
                         번 &nbsp; &nbsp;
+                        <input type="button" id="searchUserBtn" class="button" value="추가하기" style="width:100px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div style=" overflow:auto; margin:10px; height: 200px; background: white; border-radius: 30px">
+                            <table class="search" style="margin:20px; width:100%">
+                                <tr>
+                                    <th>학번</th>
+                                    <th>이름</th>
+                                    <th>상/벌점</th>
+                                    <th>삭제</th>
+                                </tr>
+                                <div id="selectUserList">
+
+                                </div>
+                            </table>
+                        </div>
                     </td>
                 </tr>
                 <tr>

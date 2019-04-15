@@ -30,6 +30,10 @@ public class PointService {
         return pointDao.getUserId(currentId);
     }
 
+    public UserVO getUserByCurrentId(String currentId){
+        return pointDao.getUserByCurrentId(currentId);
+    }
+
     public void insertPoint(PointVO pointVO){
         pointDao.insertPoint(pointVO);
     }

@@ -104,6 +104,23 @@ public class PointController {
     }
 
     @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/getUserByCurrentId", consumes = "application/json", produces = "application/json")
+    public UserVO selectUser(@RequestBody String currentId, HttpServletRequest request){
+
+        UserVO user = new UserVO();
+        logger.info("request : "+currentId);
+        logger.info("response : getUserByCurrentId");
+        try {
+            user = pointService.getUserByCurrentId(currentId);
+
+            logger.info("user : "+user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/insertPoint", consumes = "application/json", produces = "application/json")
     public ResultCode insertPoint(@RequestBody PointVO pointVO, HttpServletRequest request){
 
