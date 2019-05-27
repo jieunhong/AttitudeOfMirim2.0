@@ -1,6 +1,6 @@
 .subtitle{
 	font-size: 30px;
-	font-family: 'µ¸¿ò' ;
+	font-family: 'ï¿½ï¿½ï¿½ï¿½' ;
 	margin: 20px 0;
 }
 
@@ -8,15 +8,22 @@
 	font-size: 12pt;
 	margin: 0 10px;
 }
-
+.art_insert_score{
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+}
+.table_user{
+    width: 90%;
+    margin: 20px auto;
+}
 table {
 	border-collapse: separate;
     border-spacing: 1px;
     text-align: left;
     line-height: 1.5;
-    width: 40%;
     border-top: 1px solid #909090;
-    font-family: 'µ¸¿ò' ;
+    font-family: 'ï¿½ï¿½ï¿½ï¿½' ;
     margin: 0 auto;
     margin-bottom: 30px;
 }

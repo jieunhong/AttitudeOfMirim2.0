@@ -1,3 +1,4 @@
+/*
 package kr.hs.emirm.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -20,4 +21,4 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated();
     }
-}
+}*/

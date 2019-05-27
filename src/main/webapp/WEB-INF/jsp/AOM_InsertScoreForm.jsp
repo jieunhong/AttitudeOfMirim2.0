@@ -30,11 +30,16 @@
 
         $("#insertBtn").click(function () {
             insertPoint();
-        })
+        });
+
         $("#searchUserBtn").click(function () {
             searchUser();
-        })
+        });
 
+
+        $('#selectUserList').on("click", "button", function() {
+            $(this).closest("tr").remove()
+        });
 
     });
     var insertPoint = function () {
@@ -97,16 +102,16 @@
                 console.log(data);
                 if(data != null) {
 
-                    var pushContents = [];
+                    var pushContents ="";
                     var totalPoint = 0;
 
                     console.log(data);
-                        pushContents.push("<tr>");
-                        pushContents.push("<td>" + data.currentId + "</td>");
-                        pushContents.push("<td>" + data.name + "</td>");
-                        pushContents.push("<td>" + data.total + "</td>");
-                        pushContents.push("<td>" + "<a href='javascript: deleteUser(" + data.id + ")'> 삭제 </a> </td>");
-                        pushContents.push("</tr>");
+                        pushContents += ("<tr>");
+                        pushContents+=("<td>" + data.currentId + "</td>");
+                        pushContents+=("<td>" + data.name + "</td>");
+                        pushContents+=("<td>" + data.total + "</td>");
+                        pushContents+=("<td>" + "<button type='button'> 삭제 </button> </td>");
+                        pushContents+=("</tr>");
                     $("#selectUserList").append(pushContents);
 
                 }else{
@@ -125,118 +130,106 @@
     }
 
 
+
 </script>
 <body>
-<%@include file="top_teacher.jsp" %>
-<div class="container">
-    <div class="subtitle">상/벌점 추가</div>
-
-    <form method="post">
-        <div id="insert">
-            <table>
-                <colgroup>
-                    <col width="25%"/>
-                    <col width="75%"/>
-                </colgroup>
-                <tr>
-                    <td>학번</td>
-                    <td>
-                        <select id="grade">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                        학년 &nbsp; &nbsp;
-                        <select id="class">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                        반 &nbsp; &nbsp;
-                        <select id="num">
-                            <option value="01">1</option>
-                            <option value="02">2</option>
-                            <option value="03">3</option>
-                            <option value="04">4</option>
-                            <option value="05">5</option>
-                            <option value="06">6</option>
-                            <option value="07">7</option>
-                            <option value="08">8</option>
-                            <option value="09">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="!8">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                        </select>
-                        번 &nbsp; &nbsp;
-                        <input type="button" id="searchUserBtn" class="button" value="추가하기" style="width:100px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div style=" overflow:auto; margin:10px; height: 200px; background: white; border-radius: 30px">
-                            <table class="search" style="margin:20px; width:100%">
-                                <tr>
-                                    <th>학번</th>
-                                    <th>이름</th>
-                                    <th>상/벌점</th>
-                                    <th>삭제</th>
-                                </tr>
-                                <div id="selectUserList">
-
-                                </div>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>내용</td>
-                    <td><textarea class="textbox" rows="1" cols="20" id="content"></textarea></td>
-                </tr>
-                <tr>
-                    <td>상/벌점</td>
-                    <td>
-                        <select id="point">
-                            <option value="10">10</option>
-                            <option value="9">9</option>
-                            <option value="8">8</option>
-                            <option value="7">7</option>
-                            <option value="6">6</option>
-                            <option value="5">5</option>
-                            <option value="4">4</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                            <option value="0" selected="selected">0</option>
-                            <option value="-1">-1</option>
-                            <option value="-2">-2</option>
-                            <option value="-3">-3</option>
-                            <option value="-4">-4</option>
-                            <option value="-5">-5</option>
-                            <option value="-6">-6</option>
-                            <option value="-7">-7</option>
-                            <option value="-8">-8</option>
-                            <option value="-9">-9</option>
-                            <option value="-10">-10</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div>
+<header>
+    <%@include file="top_teacher.jsp" %>
+</header>
+<main>
+    <article class="art_insert_score">
+        <div class="title">상/벌점 추가</div>
+        <section>
+            <span>학번</span>
+            <select id="grade">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            학년 &nbsp; &nbsp;
+            <select id="class">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            반 &nbsp; &nbsp;
+            <select id="num">
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="!8">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </select>
+            번 &nbsp; &nbsp;
+            <input type="button" id="searchUserBtn" class="button" value="추가하기" style="width:100px;">
+        </section>
+        <section>
+            <div style=" overflow:auto; margin:10px; height: 200px; background: white; border-radius: 30px">
+                <table id="selectUserList" class="table_user" >
+                    <tr>
+                        <th>학번</th>
+                        <th>이름</th>
+                        <th>상/벌점</th>
+                        <th>삭제</th>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section>
+            <tr>
+                <td>내용</td>
+                <td><textarea class="textbox" rows="1" cols="20" id="content"></textarea></td>
+            </tr>
+        </section>
+        <section>
+            <span>상/벌점</span>
+            <select id="point">
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0" selected="selected">0</option>
+                <option value="-1">-1</option>
+                <option value="-2">-2</option>
+                <option value="-3">-3</option>
+                <option value="-4">-4</option>
+                <option value="-5">-5</option>
+                <option value="-6">-6</option>
+                <option value="-7">-7</option>
+                <option value="-8">-8</option>
+                <option value="-9">-9</option>
+                <option value="-10">-10</option>
+            </select>
+        </section>
         <input type="button" id="insertBtn" class="button" value="상/벌점 추가">
-    </form>
-</div>
-
-<%@include file="bottom_copyright.jsp" %>
+    </article>
+</main>
+<footer>
+    <%@include file="bottom_copyright.jsp" %>
+</footer>
 </body>
 </html>
