@@ -37,14 +37,15 @@ response.setHeader("Cache-Control", "no-cache");
     </script>
 </head>
 <body>
-<%@include file="top_teacher.jsp" %>
+<header>
+    <%@include file="top_teacher.jsp" %>
+</header>
 <style>
     .hand, .button {
         cursor: pointer;
     }
 </style>
-
-<div class="container">
+<main>
     <table>
         <tr>
             <br>
@@ -67,7 +68,9 @@ response.setHeader("Cache-Control", "no-cache");
                        onclick="location.href='/teacher/searchUser'"></td>
         </tr>
     </table>
-</div>
+</main>
+<footer>
 <%@include file="bottom_copyright.jsp" %>
+</footer>
 </body>
 </html>

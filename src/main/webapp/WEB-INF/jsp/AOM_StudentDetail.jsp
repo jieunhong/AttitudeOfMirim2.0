@@ -13,47 +13,53 @@
 <link rel="shorcut icon" href="/resources/img/fbgraph.png" type="image/x-icon">
 </head>
 <body>
-	<%@include file="top_student.jsp"%>
+<header>
+	<%@include file="top_student.jsp" %>
+</header>
+<main>
+	<article>
+	<span class="subtitle">
+		<c:out value="${user.name}"/>님의 상세 내역
+	</span>
+		<%--<%
+            if (data.pointList == null) {
+        %>
+        <b>등록된 상/벌점 정보가 없습니다.</b>
+        <p>
+            <a href="AOM_StudentMain.jsp">첫 화면으로 이동</a>
+            <%
+                application.setAttribute("num", num);
+                } else {
+            %>
+    --%>
+		<section>
+			<table class="search">
+				<tr>
+					<th>날짜</th>
+					<th>내용</th>
+					<th>상점</th>
+					<th>벌점</th>
+					<th>선생님</th>
+				</tr>
 
-	  <div class="container">
-	<div class="subtitle">
-		<c:out value="${user.name}" />님의 상세 내역
-	</div>
-	<%--<%
-		if (data.pointList == null) {
-	%>
-	<b>등록된 상/벌점 정보가 없습니다.</b>
-	<p>
-		<a href="AOM_StudentMain.jsp">첫 화면으로 이동</a>
-		<%
-			application.setAttribute("num", num);
-			} else {
-		%>
---%>
-	  <table class="search">
-		  <tr>
-			  <th>날짜</th>
-			  <th>내용</th>
-			  <th>상점</th>
-			  <th>벌점</th>
-			  <th>선생님</th>
-		  </tr>
-
-
-		  <c:forEach items="${pointList}" var="list">
-			  <tr>
-				  <td><c:out value="${list.regDate}" /></td>
-				  <td><c:out value="${list.ptContent}" /></td>
-				  <td><c:out value="${list.ptPlus}" /></td>
-				  <td><c:out value="${list.ptMinus}" /></td>
-				  <td><c:out value="${list.regAdmin}" /></td>
-			  </tr>
-		  </c:forEach>
-	  </table>
-	<%--<%
-		}
-	%>--%>
-</div>
-	<%@include file="bottom_copyright.jsp"%>
+				<c:forEach items="${pointList}" var="list">
+					<tr>
+						<td><c:out value="${list.regDate}"/></td>
+						<td><c:out value="${list.ptContent}"/></td>
+						<td><c:out value="${list.ptPlus}"/></td>
+						<td><c:out value="${list.ptMinus}"/></td>
+						<td><c:out value="${list.regAdmin}"/></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</section>
+		<%--<%
+            }
+        %>--%>
+	</article>
+</main>
+<footer>
+	<%@include file="bottom_copyright.jsp" %>
+</footer>
 </body>
 </html>

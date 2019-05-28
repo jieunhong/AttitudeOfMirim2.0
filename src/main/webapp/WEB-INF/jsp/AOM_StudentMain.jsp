@@ -36,19 +36,22 @@
     %>
 </head>
 <body>
-<%@include file="top_student.jsp" %>
-
-<div class="container">
-    <div id="info">
-        <%--   <% user.setStu_name(num); %> --%>
-
-            <c:out value="${user.name}" />님, <span class="light">환영합니다.</span><br/> <span
-            class="light">현재 상벌점 총 합계는</span>
-            <c:out value="${user.total}" />점<span class="light">입니다.</span>
-    </div>
-    <input type="submit" class="button" value="학년별 상/벌점 상세보기"
+<header>
+    <%@include file="top_student.jsp" %>
+</header>
+<main>
+    <article>
+        <section id="info">
+            <c:out value="${user.name}"/>님, <span class="light">환영합니다.</span><br/> <span
+                class="light">현재 상벌점 총 합계는</span>
+            <c:out value="${user.total}"/>점<span class="light">입니다.</span>
+        </section>
+        <input type="submit" class="button" value="학년별 상/벌점 상세보기"
                onclick="location.href='/student/studentDetail'">
-</div>
-<%@include file="bottom_copyright.jsp" %>
+    </article>
+</main>
+<footer>
+    <%@include file="bottom_copyright.jsp" %>
+</footer>
 </body>
 </html>

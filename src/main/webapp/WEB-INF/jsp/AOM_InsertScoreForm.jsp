@@ -26,6 +26,30 @@
 <script type="text/javascript">
     var curpage = 1;
 
+    var selectPoint = `<td><select id="point">
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0" selected="selected">0</option>
+                <option value="-1">-1</option>
+                <option value="-2">-2</option>
+                <option value="-3">-3</option>
+                <option value="-4">-4</option>
+                <option value="-5">-5</option>
+                <option value="-6">-6</option>
+                <option value="-7">-7</option>
+                <option value="-8">-8</option>
+                <option value="-9">-9</option>
+                <option value="-10">-10</option>
+            </select></td>`
+
     $(document).ready(function () {
 
         $("#insertBtn").click(function () {
@@ -105,13 +129,16 @@
                     var pushContents ="";
                     var totalPoint = 0;
 
+                    alert(selectPoint);
                     console.log(data);
                         pushContents += ("<tr>");
-                        pushContents+=("<td>" + data.currentId + "</td>");
-                        pushContents+=("<td>" + data.name + "</td>");
-                        pushContents+=("<td>" + data.total + "</td>");
-                        pushContents+=("<td>" + "<button type='button'> 삭제 </button> </td>");
-                        pushContents+=("</tr>");
+                        pushContents += ("<td>" + data.currentId + "</td>");
+                        pushContents += ("<td>" + data.name + "</td>");
+                        pushContents += ("<td>" + data.total + "</td>");
+                        pushContents += selectPoint;
+                        pushContents += ('<td><textarea class="textbox" rows="1" cols="20" id="content"></textarea></td>');
+                        pushContents += ("<td>" + "<button type='button'> 삭제 </button> </td>");
+                        pushContents += ("</tr>");
                     $("#selectUserList").append(pushContents);
 
                 }else{
@@ -135,6 +162,7 @@
 <body>
 <header>
     <%@include file="top_teacher.jsp" %>
+    \
 </header>
 <main>
     <article class="art_insert_score">
@@ -187,43 +215,13 @@
                     <tr>
                         <th>학번</th>
                         <th>이름</th>
+                        <th>현재 상/벌점</th>
                         <th>상/벌점</th>
+                        <th>내용</th>
                         <th>삭제</th>
                     </tr>
                 </table>
             </div>
-        </section>
-        <section>
-            <tr>
-                <td>내용</td>
-                <td><textarea class="textbox" rows="1" cols="20" id="content"></textarea></td>
-            </tr>
-        </section>
-        <section>
-            <span>상/벌점</span>
-            <select id="point">
-                <option value="10">10</option>
-                <option value="9">9</option>
-                <option value="8">8</option>
-                <option value="7">7</option>
-                <option value="6">6</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-                <option value="0" selected="selected">0</option>
-                <option value="-1">-1</option>
-                <option value="-2">-2</option>
-                <option value="-3">-3</option>
-                <option value="-4">-4</option>
-                <option value="-5">-5</option>
-                <option value="-6">-6</option>
-                <option value="-7">-7</option>
-                <option value="-8">-8</option>
-                <option value="-9">-9</option>
-                <option value="-10">-10</option>
-            </select>
         </section>
         <input type="button" id="insertBtn" class="button" value="상/벌점 추가">
     </article>
