@@ -83,20 +83,20 @@
     });
     var insertPoint = function () {
 
-        var id = $("#grade").val() + $("#class").val() + $("#num").val();
-        var payload = {};
+        var payload = [];
+        var insertUserList = $("#selectUserList tbody tr ")
 
-        payload.ptPlus = 0;
-        payload.ptMinus = 0;
-
-        if ($("#point").val() > 0) {
-            payload.ptPlus = $("#point").val();
-        } else if ($("#point").val() < 0) {
-            payload.ptMinus = $("#point").val();
-        }
-        payload.ptContent = $("#content").val();
-        payload.ptNum = id;
-
+        insertUserList.each(function(i){
+            var user = {};
+            user.ptNum = insertUserList.eq(i).find("#id").text();
+            user.ptContent =  insertUserList.eq(i).find("#content").val();
+            if(insertUserList.eq(i).find("#point").val() > 0) {
+                user.ptPlus = insertUserList.eq(i).find("#point").val() ;
+            }else{
+                user.ptMinus = insertUserList.eq(i).find("#point").val() ;
+            }
+            payload.push(user);
+        });
         $.ajax({
             type: "POST",
             url: "insertPoint",
@@ -107,13 +107,14 @@
             success: function (data) {
                 console.log(data);
                 if(data.resultCode == 1) {
-                    alert("추가 완료");
+                    alert("상/벌점 추가가 완료되었습니다");
+                    location.href=("/teacher/main");
                 }else{
                     alert("["+data.resultCode+"]"+data.resultMessage);
                 }
             },
             error: function (e) {
-                alert("에러남");
+                alert("상/벌점 추가중 에러가 발생했습니다.");
                 console.log(e);
             }
         });
@@ -129,14 +130,10 @@
             mimeType: "application/json",
             data: currentId,
             success: function (data) {
-                console.log(data);
                 if(data != null) {
 
                     var pushContents ="";
                     var totalPoint = 0;
-
-                    alert(selectPoint);
-                    console.log(data);
                         pushContents += ("<tr>");
                         pushContents += ("<td><span id='id'>" + data.currentId + "</span></td>");
                         pushContents += ("<td>" + data.name + "</td>");
@@ -216,7 +213,7 @@
             <input type="button" id="searchUserBtn" class="button" value="추가하기" style="width:100px;">
         </section>
         <section>
-            <div style=" overflow:auto; margin:10px; height: 200px; width: 820px; background: white; border-radius: 30px">
+            <div style=" overflow:auto; margin: auto; padding: 10px; height: 200px; width: 820px; background: white; border-radius: 30px">
                 <table id="selectUserList" class="table_user" >
                     <thead>
                     <tr>

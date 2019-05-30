@@ -122,9 +122,10 @@ public class PointController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/insertPoint", consumes = "application/json", produces = "application/json")
-    public ResultCode insertPoint(@RequestBody PointVO pointVO, HttpServletRequest request){
+    public ResultCode insertPoint(@RequestBody List<PointVO> pointList, HttpServletRequest request){
 
-
+        String errMessage = "";
+        int errCode=1;
 
         try {
 
@@ -133,21 +134,21 @@ public class PointController {
 
             HttpSession session = request.getSession(true);
 
-            pointVO.setPtId(pointService.getUserId(pointVO.getPtNum()));
-            pointVO.setRegAdmin(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString());
-            if(StringUtils.isEmpty(pointVO.getPtId())){
-                return ResultCode.builder()
-                        .resultCode(1001)
-                        .resultMessage("등록하시려는 학생의 아이디가 존재하지 않습니다. ")
-                        .build();
-            }else {
-                try {
-                    pointService.insertPoint(pointVO);
-                } catch (Exception e) {
-                    return ResultCode.builder()
-                            .resultCode(1001)
-                            .resultMessage("[ERROR]상/벌점 추가를 실패했습니다. :" + e.getMessage())
-                            .build();
+
+            for (PointVO pointVO : pointList ) {
+                pointVO.setPtId(pointService.getUserId(pointVO.getPtNum()));
+                pointVO.setRegAdmin(session.getAttribute(CommonData.SESS_LOGIN_NAME.getKey()).toString());
+
+                if(StringUtils.isEmpty(pointVO.getPtId())){
+                    errCode = 1000;
+                    errMessage += "등록하시려는 학생의 아이디가 존재하지 않습니다. ("+pointVO.getPtNum()+")<br>";
+                }else{
+                    try {
+                        pointService.insertPoint(pointVO);
+                    } catch (Exception e) {
+                        errCode = 1001;
+                        errMessage += "[ERROR]상/벌점 추가를 실패했습니다. : ("+e.getMessage()+")<br>";
+                    }
                 }
             }
         }catch (Exception e){
@@ -158,7 +159,8 @@ public class PointController {
         }
 
         return ResultCode.builder()
-                .resultCode(1)
+                .resultCode(errCode)
+                .resultMessage(errMessage)
                 .build();
 
     }
