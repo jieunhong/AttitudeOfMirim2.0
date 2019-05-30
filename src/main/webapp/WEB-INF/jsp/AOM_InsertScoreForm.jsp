@@ -57,7 +57,22 @@
         });
 
         $("#searchUserBtn").click(function () {
-            searchUser();
+
+            var currentId = $("#grade").val() + $("#class").val() + $("#num").val();
+
+            var currentUserList =$("#selectUserList tbody span#id ");
+
+            currentUserList.each(function(i){
+                if(currentUserList.eq(i).text() == currentId){
+                    alert("이미 동일한 학생이 추가되어있습니다.");
+                    currentId = '';
+                    return false;
+                }
+            });
+
+            if (currentId != '') {
+                searchUser(currentId);
+            }
         });
 
 
@@ -71,7 +86,6 @@
         var id = $("#grade").val() + $("#class").val() + $("#num").val();
         var payload = {};
 
-
         payload.ptPlus = 0;
         payload.ptMinus = 0;
 
@@ -83,7 +97,6 @@
         payload.ptContent = $("#content").val();
         payload.ptNum = id;
 
-        console.log(payload);
         $.ajax({
             type: "POST",
             url: "insertPoint",
@@ -106,15 +119,8 @@
         });
 
     }
-    var searchUser = function () {
+    var searchUser = function (currentId) {
 
-        var currentId = $("#grade").val() + $("#class").val() + $("#num").val();
-
-
-        console.log(currentId);
-        alert(currentId);
-
-        alert(typeof(currentId));
         $.ajax({
             type: "POST",
             url: "getUserByCurrentId",
@@ -132,7 +138,7 @@
                     alert(selectPoint);
                     console.log(data);
                         pushContents += ("<tr>");
-                        pushContents += ("<td>" + data.currentId + "</td>");
+                        pushContents += ("<td><span id='id'>" + data.currentId + "</span></td>");
                         pushContents += ("<td>" + data.name + "</td>");
                         pushContents += ("<td>" + data.total + "</td>");
                         pushContents += selectPoint;
@@ -210,8 +216,9 @@
             <input type="button" id="searchUserBtn" class="button" value="추가하기" style="width:100px;">
         </section>
         <section>
-            <div style=" overflow:auto; margin:10px; height: 200px; background: white; border-radius: 30px">
+            <div style=" overflow:auto; margin:10px; height: 200px; width: 820px; background: white; border-radius: 30px">
                 <table id="selectUserList" class="table_user" >
+                    <thead>
                     <tr>
                         <th>학번</th>
                         <th>이름</th>
@@ -220,6 +227,10 @@
                         <th>내용</th>
                         <th>삭제</th>
                     </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
                 </table>
             </div>
         </section>
