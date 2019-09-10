@@ -101,4 +101,30 @@ public class LoginController {
     }
 
 
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/changePwd", consumes = "application/json", produces = "application/json")
+    public ResultCode changePwd(@RequestBody String currentPwd, @RequestBody String newPwd,HttpServletRequest request){
+
+
+
+        logger.info("request : (currentPwd - "+currentPwd+") ( newPwd : "+newPwd+")");
+        logger.info("response : changePwd");
+
+        try {
+            HttpSession session = request.getSession(true);
+
+
+                return ResultCode.builder().resultCode(1)
+                        .resultUrl("/teacher/main")
+                        .build();
+
+
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+
+        return ResultCode.builder().resultCode(-1)
+                .resultMessage("사용자가 존재하지 않습니다. 다시 한 번 확인해주세요.")
+                .build();
+    }
 }

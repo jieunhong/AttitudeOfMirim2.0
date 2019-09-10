@@ -8,8 +8,13 @@ function logout(){
 	}
 }
 function changePwd(){
-  alert("준비중인 기능입니다.");
+    $('#popup').bPopup();
 }
+
+var closePopup = function(){
+    $('#popup').bPopup().close();
+}
+
 console.log("© Copyright NEWMEDIA CONTENTS MIRIM MEISTER SCHOOL , Jieun Hong 2018. ALL RIGHTS RESERVED");
 console.log("페이지에 관한 문의사항은 hyy0786@e-mirim.hs.kr으로 연락 부탁드립니다.");
 </script>
@@ -26,3 +31,35 @@ console.log("페이지에 관한 문의사항은 hyy0786@e-mirim.hs.kr으로 연
   </a>
     <hr noshade  style="margin-right:10px;margin-left:10px;"/>
   </div>
+
+<aside>
+    <div id="popup" class="popup">
+        <a class='popup-delete' onclick="closePopup()">
+            <img class="close-button" src="/resources/img/icon_close.png">
+        </a>
+        <center>
+            <div id="popupContents" class="popup_contents">
+                <ul>
+                    <li class="change_pwd_list">
+                        <ul>
+                            <li>현재 비밀번호</li>
+                            <li><input type="text" id="currentPwd"> </li>
+                        </ul>
+                    </li>
+                    <li class="change_pwd_list">
+                        <ul>
+                            <li>변경할 비밀번호</li>
+                            <li><input type="text" id="changePwd"> </li>
+                        </ul>
+                    </li>
+                    <li class="change_pwd_list">
+                        <ul>
+                            <li>변경할 비밀번호 확인</li>
+                            <li><input type="text" id="changePwdChk"> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </center>
+    </div>
+</aside>

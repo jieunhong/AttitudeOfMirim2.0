@@ -18,6 +18,7 @@
 <head>
     <title>학생 페이지</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/resources/js/jquery.bpopup.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

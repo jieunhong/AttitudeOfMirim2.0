@@ -203,7 +203,7 @@
     </form>
     <div id="searchUserList" style="display: inline-block;"></div>
     <div id="searchUserDetailPopup" class="popup">
-        <a onclick="closePopup()" style="height: 60px; display: block;">
+        <a class='popup-delete' onclick="closePopup()" >
             <img class="close-button" src="/resources/img/icon_close.png" >
         </a>
         <center>

@@ -109,7 +109,7 @@
     </script>
     <%session.invalidate(); %>
 </head>
-<body>
+<body class="body">
 <header></header>
 <main>
     <article>
@@ -142,7 +142,7 @@
     <!--popup-->
     <aside>
         <div id="loginErrorPopup" class="popup">
-            <a onclick="closePopup()">
+            <a onclick="vup()">
                 <img class="close-button" src="/resources/img/icon_close.png">
             </a>
             <center>
